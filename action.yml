@@ -1,0 +1,11 @@
+name: 'SemVer Golang'
+description: 'SemVer tooling for Github'
+outputs:
+  tag:
+    description: 'The tag we want to get'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - semver
+    - gen-tag
