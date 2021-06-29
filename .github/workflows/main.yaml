@@ -3,15 +3,13 @@ name: Docker Image CI
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    tags:
+      - 'v*.*.*'
 
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: docker login
@@ -20,3 +18,17 @@ jobs:
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+
+      - name: Build the Docker image
+        run: |
+          docker build . --tag="cmser/git-tools:${{ steps.vars.outputs.tag }}"
+          docker build . --tag="cmser/git-tools:latest"
+
+      - name: Docker Push
+        run: |
+          docker push cmser/git-tools:${{ steps.vars.outputs.tag }}
+          docker push cmser/git-tools:latest
