@@ -12,5 +12,5 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: validate PR name
-        id: PR name
+        id: pr_name
         uses: ./actions/pr
