@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/cmser/semver-action/cmd"
+	"github.com/cmser/git-tools/cmd"
 	"os"
 )
 

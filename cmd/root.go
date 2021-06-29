@@ -6,7 +6,7 @@ import (
 )
 
 var RootCmd = &cobra.Command {
-	Use: "semver",
+	Use: "git-tools",
 }
 
 func init() {
