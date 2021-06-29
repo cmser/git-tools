@@ -1,0 +1,11 @@
+name: 'Validate PR name'
+description: 'PR tooling for GitHub actions'
+runs:
+  using: 'docker'
+  image: '../Dockerfile'
+  args:
+    - semver
+    - pr
+    - validate
+    - --name
+    - "fo"

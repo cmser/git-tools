@@ -7,13 +7,12 @@ import (
 
 var RootCmd = &cobra.Command {
 	Use: "semver",
-	Run: func(cmd *cobra.Command, args []string) {
-
-	},
 }
 
 func init() {
 	curDir, _ := os.Getwd()
 	genTag.PersistentFlags().String("dir", curDir, "--dir")
 	RootCmd.AddCommand(genTag)
+	RootCmd.AddCommand(packageJson)
+	RootCmd.AddCommand(pr)
 }
