@@ -4,6 +4,7 @@ inputs:
   pr-name:
     description: the name of the PR
     required: true
+    default: '${{ github.event.pull_request.title }}'
 runs:
   using: 'docker'
   image: 'docker://cmser/git-tools'
@@ -12,4 +13,4 @@ runs:
     - pr
     - validate
     - --name
-    - "${{ github.context.payload.pull_request.title }}"
+    - "${{ inputs.pr-name }}"

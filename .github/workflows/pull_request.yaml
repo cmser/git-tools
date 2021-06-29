@@ -2,6 +2,7 @@ name: Validate PR name
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, edited]
     branches:
       - main
 
@@ -12,7 +13,5 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: validate PR name
-        id: PR name
+        id: pr_name
         uses: ./actions/pr
-        with:
-          pr-name: github.context.payload.pull_request.title
