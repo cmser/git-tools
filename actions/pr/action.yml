@@ -4,7 +4,7 @@ runs:
   using: 'docker'
   image: '../Dockerfile'
   args:
-    - semver
+    - git-tools
     - pr
     - validate
     - --name

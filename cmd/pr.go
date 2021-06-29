@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/cmser/semver-action/pkg/utils"
+	"github.com/cmser/git-tools/pkg/utils"
 	"github.com/spf13/cobra"
 )
 

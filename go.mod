@@ -1,4 +1,4 @@
-module github.com/cmser/semver-action
+module github.com/cmser/git-tools
 
 go 1.15
 
