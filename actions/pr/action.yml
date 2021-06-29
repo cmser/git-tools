@@ -1,11 +1,15 @@
 name: 'Validate PR name'
 description: 'PR tooling for GitHub actions'
+inputs:
+  pr-name:
+    description: the name of the PR
+    required: true
 runs:
   using: 'docker'
-  image: '../Dockerfile'
+  image: 'docker://cmser/git-tools'
   args:
     - git-tools
     - pr
     - validate
     - --name
-    - "fo"
+    - "${{ github.context.payload.pull_request.title }}"
