@@ -14,5 +14,3 @@ jobs:
       - name: validate PR name
         id: PR name
         uses: ./actions/pr
-        with:
-          pr-name: github.context.payload.pull_request.title
