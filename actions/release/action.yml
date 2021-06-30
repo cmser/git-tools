@@ -18,5 +18,5 @@ runs:
     - git-tools
     - release
     - create
-    - --name
-    - "${{ inputs.pr-name }}"
+    #- --name
+    #- "${{ inputs.pr-name }}"
