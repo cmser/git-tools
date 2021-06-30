@@ -16,6 +16,8 @@ jobs:
     # if: github.event.pull_request.merged
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: create release
         uses: ./actions/release
 
