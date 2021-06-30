@@ -1,0 +1,18 @@
+name: 'Create release branch'
+description: 'PR tooling for GitHub actions'
+inputs:
+  pr-name:
+    description: the name of the PR
+    required: true
+    default: '${{ github.event.pull_request.title }}'
+runs:
+  using: 'docker'
+  image: 'docker://cmser/git-tools'
+  env:
+    GITHUB_TOKEN: "${{ github.token }}"
+  args:
+    - git-tools
+    - release
+    - create
+    - --name
+    - "${{ inputs.pr-name }}"
