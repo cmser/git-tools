@@ -2,33 +2,17 @@ name: Docker Image CI
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
+    branches:
+      - 'feat/foo'
 
 jobs:
 
   build:
-    if: github.event.base_ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: docker login
+      - name: Dump GitHub context
         env:
-          DOCKER_USER: ${{secrets.DOCKER_USER}}
-          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-        run: |
-          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
 
-      - name: Set output
-        id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-
-      - name: Build the Docker image
-        run: |
-          docker build . --tag="cmser/git-tools:${{ steps.vars.outputs.tag }}"
-          docker build . --tag="cmser/git-tools:latest"
-
-      - name: Docker Push
-        run: |
-          docker push cmser/git-tools:${{ steps.vars.outputs.tag }}
-          docker push cmser/git-tools:latest
