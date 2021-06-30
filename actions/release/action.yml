@@ -5,11 +5,15 @@ inputs:
     description: the name of the PR
     required: true
     default: '${{ github.event.pull_request.title }}'
+  github-token:
+    description: github token
+    required: true
+    default: '${{ github.token }}'
 runs:
   using: 'docker'
   image: 'docker://cmser/git-tools'
   env:
-    GITHUB_TOKEN: "${{ github.token }}"
+    GITHUB_TOKEN: "${{ inputs.github-token }}"
   args:
     - git-tools
     - release
