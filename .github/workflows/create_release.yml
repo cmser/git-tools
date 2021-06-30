@@ -13,11 +13,9 @@ jobs:
 
   create_branch:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged
+    # if: github.event.pull_request.merged
     steps:
       - uses: actions/checkout@v2
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
+      - name: create release
+        uses: ./actions/release
 
