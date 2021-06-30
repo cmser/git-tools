@@ -5,6 +5,8 @@ import (
 	"gopkg.in/src-d/go-git.v4"
 	"gopkg.in/src-d/go-git.v4/config"
 	"gopkg.in/src-d/go-git.v4/plumbing"
+	"os"
+	"strings"
 )
 
 type Repo struct {
@@ -30,6 +32,11 @@ func (r Repo) FetchTags(errHandler func(msg interface{})) error  {
 		fmt.Println(reference.Strings())
 		return nil
 	})
+	for _, element := range os.Environ() {
+		variable := strings.Split(element, "=")
+		fmt.Println(variable[0],"=>",variable[1])
+	}
+
 	return nil
 }
 
