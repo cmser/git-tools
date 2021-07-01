@@ -12,7 +12,6 @@ inputs:
   token:
     description: the token used
     required: true
-    default: '${{ github.token }}'
 runs:
   using: 'docker'
   image: 'docker://cmser/git-tools'
