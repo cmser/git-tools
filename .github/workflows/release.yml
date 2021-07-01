@@ -1,14 +1,13 @@
-name: Release
+name: Create release
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
+    branches:
+      - 'release/v*.*.*'
 
 jobs:
 
-  build:
-    if: github.event.base_ref == 'refs/heads/main'
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -20,7 +19,9 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - name: Set output
         id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+        run: |
+          tag=$(echo ${GITHUB_REF#refs/heads/} | cut -d/ -f2)
+          echo ::set-output name=tag::$tag
 
       - name: Build the Docker image
         run: |
