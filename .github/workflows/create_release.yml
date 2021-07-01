@@ -1,13 +1,11 @@
-name: Create release
+name: Create release branch
 
 on:
   pull_request:
     types:
-      - opened
-      - synchronize
-      - edited
+      - closed
     branches:
-      - 'feat/foo'
+      - main
 
 jobs:
 
@@ -16,8 +14,5 @@ jobs:
     if: github.event.pull_request.merged
     steps:
       - uses: actions/checkout@v2
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
+      - uses: ./actions/release
 
