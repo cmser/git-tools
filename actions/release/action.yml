@@ -9,9 +9,15 @@ inputs:
     description: the node_id of the repo for grapphql client
     required: true
     default: '${{ github.event.repository.node_id }}'
+  token:
+    description: the token used
+    required: true
+    default: '${{ github.token }}'
 runs:
   using: 'docker'
   image: 'docker://cmser/git-tools'
+  env:
+    GITHUB_TOKEN: "${{ inputs.token }}"
   args:
     - git-tools
     - release

@@ -18,6 +18,4 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - uses: ./actions/release
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
