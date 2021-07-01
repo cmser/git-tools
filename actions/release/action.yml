@@ -5,11 +5,13 @@ inputs:
     description: the name of the PR
     required: true
     default: '${{ github.event.pull_request.title }}'
+  repo-id:
+    description: the node_id of the repo for grapphql client
+    required: true
+    default: '${{ github.event.repository.node_id }}'
 runs:
   using: 'docker'
   image: 'docker://cmser/git-tools'
-  env:
-    GITHUB_TOKEN: "${{ github.token }}"
   args:
     - git-tools
     - release
