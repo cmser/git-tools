@@ -1,14 +1,12 @@
 name: Create release
 
-on:
-  push:
-    branches:
-      - 'release/v*.*.*'
+on: create
 
 jobs:
 
   release:
     runs-on: ubuntu-latest
+    if: ${{ contains(github.ref, 'refs/heads/release/') }}
     steps:
       - uses: actions/checkout@v2
       - name: docker login
